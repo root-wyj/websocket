@@ -30,7 +30,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
 		registry.enableSimpleBroker("/topic", "/user");
 		registry.setApplicationDestinationPrefixes("/socket");
 		registry.setUserDestinationPrefix("/user");
-		registry.setPathMatcher(new AntPathMatcher("."));
+//		registry.setPathMatcher(new AntPathMatcher("."));
 	}
 	
 	@Override

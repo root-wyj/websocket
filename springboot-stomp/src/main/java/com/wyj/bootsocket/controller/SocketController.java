@@ -24,21 +24,15 @@ public class SocketController {
     private SimpMessageSendingOperations simpMessageSendingOperations;
 	
 	@MessageMapping("/hello")
-	@SendTo("/topic/test/greeting")
-	@SendToUser
+//	@SendToUser("/message")
 	public Greeting greeting(HelloMessage message) {
 		System.err.println(message.getName());
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		return new Greeting("hello! "+message.getName());
 	}
 	
 	@RequestMapping("/test")
 	public String test() {
-//		simpMessageSendingOperations.convertAndSendToUser("tom", "/message", new Greeting("what the fuck!!"));
+		simpMessageSendingOperations.convertAndSendToUser("tom", "/message", new Greeting("what the fuck!!"));
 		simpMessageSendingOperations.convertAndSend("/topic/test/greeting", new Greeting("yes it is"));
 		
 		return "success";
